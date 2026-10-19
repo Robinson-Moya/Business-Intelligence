@@ -213,7 +213,7 @@
 		sesion.fase = "mini"; sesion.vidas = 3; sesion.micro = {};
 		if (sesion.id === 1) sesion.micro = { paso: "clasificar", colocados: {}, seleccionado: null, memoria: prepararMemoria(), reveladas: [], parejas: [] };
 		if (sesion.id === 2) sesion.micro = { paso: "esquema", colocados: {}, seleccionado: null, decision: 0 };
-		if (sesion.id === 3) sesion.micro = { paso: "orden", orden: [2, 0, 1], decisionGrafico: 0, umbral: datos.unidades[2].alerta.umbral };
+		if (sesion.id === 3) sesion.micro = { paso: "orden", orden: [2, 0, 1], decisionGrafico: 0 };
 		pintarMinijuego();
 	}
 
@@ -275,7 +275,7 @@
 			return;
 		}
 		const alerta = datos.unidades[2].alerta;
-		zona.innerHTML = `<section class="play-panel">${pintarCabeceraReto("Alerta por umbral", "Ajusta el umbral y comprueba si el KPI de ejemplo la activa.")}<div class="threshold-control"><label for="alertThreshold">Umbral:</label><input id="alertThreshold" type="number" value="${micro.umbral}" min="0" max="100" aria-label="Valor del umbral de alerta"><span>El KPI de ejemplo vale ${alerta.valor}.</span><button class="game-action" type="button" data-action="check-alert">Evaluar</button></div><p class="alert-result" id="alertResult" aria-live="polite"></p></section>`;
+		zona.innerHTML = `<section class="play-panel">${pintarCabeceraReto("Alerta por umbral", "No hay valores de ejemplo en el sílabo: aplica el principio sin inventar mediciones.")}<div class="chart-choice"><p>${alerta.principio}</p><div class="choice-row">${alerta.opciones.map((opcion, indice) => `<button class="choice-button" type="button" data-alert-option="${indice}">${opcion}</button>`).join("")}</div><p class="alert-result" id="alertResult" aria-live="polite"></p></div></section>`;
 	}
 
 	function quitarVida(mensaje) {
@@ -382,7 +382,9 @@
 		botones.forEach((boton) => { boton.disabled = true; if (Number(boton.dataset.bossOption) === decision.correcta) boton.classList.add("correct"); if (Number(boton.dataset.bossOption) === indice && !correcto) boton.classList.add("wrong"); });
 		const feedback = document.getElementById("bossFeedback");
 		feedback.textContent = correcto ? `+${decision.impacto} puntos de impacto.` : "Decisión registrada; el equipo continúa con la misión.";
+		const sesionActual = sesion;
 		window.setTimeout(() => {
+			if (sesion !== sesionActual) return;
 			if (sesion.vidas <= 0) sesion.fase = "boss-failed";
 			else if (sesion.paso === datos.jefe.decisiones.length - 1) sesion.fase = "boss-done";
 			else sesion.paso += 1;
@@ -426,7 +428,7 @@
 		if (objetivo.dataset.moveStep !== undefined) { reordenar(Number(objetivo.dataset.moveStep), Number(objetivo.dataset.moveStep) + Number(objetivo.dataset.direction)); return; }
 		if (objetivo.dataset.action === "check-etl") { comprobarETL(); return; }
 		if (objetivo.dataset.chartOption !== undefined) { responderGrafico(Number(objetivo.dataset.chartOption)); return; }
-		if (objetivo.dataset.action === "check-alert") { comprobarAlerta(); }
+		if (objetivo.dataset.alertOption !== undefined) { comprobarAlerta(Number(objetivo.dataset.alertOption)); }
 	}
 
 	function voltearMemoria(indice) {
@@ -478,16 +480,13 @@
 		pintarMinijuego();
 	}
 
-	function comprobarAlerta() {
-		const input = document.getElementById("alertThreshold");
-		const umbral = Number(input.value);
-		sesion.micro.umbral = Number.isFinite(umbral) ? umbral : datos.unidades[2].alerta.umbral;
-		if (datos.unidades[2].alerta.valor < sesion.micro.umbral) {
+	function comprobarAlerta(indice) {
+		const alerta = datos.unidades[2].alerta;
+		if (indice === alerta.correcta) {
 			const resultado = document.getElementById("alertResult");
-			resultado.textContent = `Alerta activada: ${datos.unidades[2].alerta.valor} es menor que ${sesion.micro.umbral}.`;
-			resultado.classList.add("triggered");
+			resultado.textContent = "Correcto: el equipo define la condición del umbral para generar la alerta.";
 			window.setTimeout(completarMinijuego, 450);
-		} else { quitarVida("El valor del KPI no cruza ese umbral. Ajusta el valor para activar la alerta."); }
+		} else { quitarVida("La alerta necesita un KPI y una condición de umbral definida."); }
 	}
 
 	function manejarArrastreInicio(evento) {

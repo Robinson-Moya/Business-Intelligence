@@ -103,7 +103,11 @@ window.SILABO_GAME_DATA = {
         { indicador: "Comparar valores entre categorías", opciones: ["Barras", "Dona", "Radar"], correcta: 0 },
         { indicador: "Mostrar partes de un total", opciones: ["Líneas", "Barras", "Dona"], correcta: 2 }
       ],
-      alerta: { indicador: "KPI de ejemplo", valor: 62, umbral: 70, operador: "menor que" }
+      alerta: {
+        principio: "Una alerta compara el KPI con un umbral definido para decidir cuándo avisar.",
+        opciones: ["Comparar el KPI con un umbral acordado por el equipo", "Activar la alerta sin definir un KPI", "Usar el umbral como sustituto del dato"],
+        correcta: 0
+      }
     }
   ],
   jefe: {
