@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Dashboard didáctico e interactivo de fútbol con datos ilustrativos de la UEFA Champions League 2026-2027.">
+  <title>Dashboard Champions League 2026-2027 · BI en claro</title>
+  <link rel="icon" href="img/bi-mark.svg" type="image/svg+xml">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="dashboard-page">
+  <nav class="navbar navbar-expand-lg fixed-top site-nav" aria-label="Navegación principal">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="index.html"><img src="img/bi-mark.svg" width="34" height="34" alt=""><span>BI <span class="brand-light">en claro</span></span></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavigation" aria-controls="mainNavigation" aria-expanded="false" aria-label="Abrir navegación"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="mainNavigation"><ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+        <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li><li class="nav-item"><a class="nav-link" href="index.html#cuestionario">Cuestionario</a></li><li class="nav-item"><a class="nav-link active" aria-current="page" href="dashboard.html">Dashboard</a></li>
+      </ul></div>
+    </div>
+  </nav>
+
+  <main class="container dashboard-main">
+    <header class="dashboard-header">
+      <div><p class="eyebrow">Analítica deportiva · Temporada de ejemplo</p><h1>UEFA Champions League <span>2026-2027</span></h1><p class="dashboard-subtitle">Una vista de rendimiento para explorar estadísticas, comparar equipos y encontrar patrones.</p></div>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-pressed="false" aria-label="Activar modo oscuro"><i class="bi bi-moon-stars" aria-hidden="true"></i><span>Modo oscuro</span></button>
+    </header>
+
+    <div class="data-notice" role="note"><i class="bi bi-info-circle-fill" aria-hidden="true"></i><p id="dataNotice">Datos ilustrativos con fines educativos. No representan resultados oficiales del torneo.</p></div>
+
+    <section class="filter-panel" aria-labelledby="filterTitle">
+      <div class="filter-heading"><div><p class="eyebrow">Explora la muestra</p><h2 id="filterTitle">Filtros</h2></div><button class="reset-filters" id="resetFilters" type="button"><i class="bi bi-arrow-counterclockwise" aria-hidden="true"></i><span>Restablecer filtros</span></button></div>
+      <div class="filter-controls">
+        <div class="filter-field"><label for="roundFilter">Jornada</label><select class="form-select" id="roundFilter"><option value="all">Todas las jornadas</option></select></div>
+        <div class="filter-field"><label for="countryFilter">País</label><select class="form-select" id="countryFilter"><option value="all">Todos los países</option></select></div>
+        <div class="filter-field"><label for="teamFilter">Equipo</label><select class="form-select" id="teamFilter"><option value="all">Todos los equipos</option></select></div>
+        <p class="filter-caption" id="filterSummary" aria-live="polite">Mostrando todos los datos ilustrativos</p>
+      </div>
+    </section>
+
+    <section class="kpi-grid" aria-label="Indicadores principales">
+      <article class="kpi-card"><div class="kpi-icon kpi-cyan"><i class="bi bi-bullseye" aria-hidden="true"></i></div><div><p>Total de goles</p><strong id="kpiGoals" aria-live="polite">0</strong><small>en los partidos filtrados</small></div></article>
+      <article class="kpi-card"><div class="kpi-icon kpi-gold"><i class="bi bi-graph-up-arrow" aria-hidden="true"></i></div><div><p>Goles por partido</p><strong id="kpiAverage" aria-live="polite">0,0</strong><small>promedio de la selección</small></div></article>
+      <article class="kpi-card"><div class="kpi-icon kpi-coral"><i class="bi bi-trophy" aria-hidden="true"></i></div><div><p>Más victorias</p><strong class="kpi-text-value" id="kpiWins">—</strong><small id="kpiWinsDetail">0 victorias</small></div></article>
+      <article class="kpi-card"><div class="kpi-icon kpi-green"><i class="bi bi-person-fill" aria-hidden="true"></i></div><div><p>Máximo goleador</p><strong class="kpi-text-value" id="kpiScorer">—</strong><small id="kpiScorerDetail">0 goles</small></div></article>
+    </section>
+
+    <section class="charts-grid" aria-label="Gráficos de rendimiento">
+      <article class="chart-panel"><div class="chart-heading"><div><p class="eyebrow">Producción ofensiva</p><h2>Goles a favor</h2></div><span class="chart-unit">Top 10</span></div><div class="chart-canvas chart-canvas-tall"><canvas id="goalsChart" role="img" aria-label="Gráfico de barras con los diez equipos que más goles anotaron"></canvas></div></article>
+      <article class="chart-panel"><div class="chart-heading"><div><p class="eyebrow">Balance de resultados</p><h2>Victorias, empates y derrotas</h2></div><span class="chart-unit">Por equipo</span></div><div class="chart-canvas chart-canvas-tall"><canvas id="resultsChart" role="img" aria-label="Gráfico de resultados por equipo"></canvas></div></article>
+      <article class="chart-panel"><div class="chart-heading"><div><p class="eyebrow">Distribución</p><h2>Resultados de los partidos</h2></div><span class="chart-unit">Local · Empate · Visitante</span></div><div class="chart-canvas chart-canvas-doughnut"><canvas id="outcomesChart" role="img" aria-label="Gráfico de dona con la distribución de victorias locales, empates y victorias visitantes"></canvas></div></article>
+      <article class="chart-panel"><div class="chart-heading"><div><p class="eyebrow">Tendencia temporal</p><h2>Goles por jornada</h2></div><span class="chart-unit">Muestra filtrada</span></div><div class="chart-canvas chart-canvas-tall"><canvas id="roundChart" role="img" aria-label="Gráfico de líneas con goles anotados en cada jornada"></canvas></div></article>
+      <article class="chart-panel chart-panel-wide"><div class="chart-heading chart-heading-radar"><div><p class="eyebrow">Perfil comparado</p><h2>Radar de equipos</h2></div><div class="compare-controls"><label><span class="visually-hidden">Primer equipo para comparar</span><select class="form-select form-select-sm" id="compareTeamA" aria-label="Primer equipo para comparar"></select></label><span aria-hidden="true">vs.</span><label><span class="visually-hidden">Segundo equipo para comparar</span><select class="form-select form-select-sm" id="compareTeamB" aria-label="Segundo equipo para comparar"></select></label></div></div><p class="radar-note">Escala normalizada de 0 a 100 · Defensa y disciplina se expresan como fortaleza relativa.</p><div class="chart-canvas chart-canvas-radar"><canvas id="radarChart" role="img" aria-label="Gráfico radar comparativo de ataque, defensa, posesión, pases y disciplina"></canvas></div></article>
+    </section>
+
+    <section class="standings-panel" aria-labelledby="standingsTitle">
+      <div class="standings-heading"><div><p class="eyebrow">Detalle de clasificación</p><h2 id="standingsTitle">Tabla de posiciones</h2><p>3 puntos por victoria · 1 por empate · 0 por derrota</p></div><div class="table-search"><label for="tableSearch">Buscar equipo</label><div class="search-input"><i class="bi bi-search" aria-hidden="true"></i><input id="tableSearch" type="search" placeholder="Nombre o país" autocomplete="off"></div></div></div>
+      <div class="table-responsive"><table class="table standings-table align-middle mb-0"><thead><tr>
+        <th scope="col"><button class="sort-button" type="button" data-sort="posicion"># <span aria-hidden="true">↕</span></button></th><th scope="col"><button class="sort-button" type="button" data-sort="nombre">Equipo <span aria-hidden="true">↕</span></button></th><th scope="col"><button class="sort-button" type="button" data-sort="pj">PJ <span aria-hidden="true">↕</span></button></th><th scope="col"><button class="sort-button" type="button" data-sort="golesFavor">GF <span aria-hidden="true">↕</span></button></th><th scope="col"><button class="sort-button" type="button" data-sort="golesContra">GC <span aria-hidden="true">↕</span></button></th><th scope="col"><button class="sort-button" type="button" data-sort="diferencia">DG <span aria-hidden="true">↕</span></button></th><th scope="col"><button class="sort-button" type="button" data-sort="victorias">V <span aria-hidden="true">↕</span></button></th><th scope="col"><button class="sort-button" type="button" data-sort="empates">E <span aria-hidden="true">↕</span></button></th><th scope="col"><button class="sort-button" type="button" data-sort="derrotas">D <span aria-hidden="true">↕</span></button></th><th scope="col"><button class="sort-button" type="button" data-sort="puntos" aria-sort="descending">Pts <span aria-hidden="true">↓</span></button></th>
+      </tr></thead><tbody id="standingsBody"></tbody></table></div>
+      <p class="table-empty d-none" id="tableEmpty">No hay equipos que coincidan con la búsqueda.</p>
+    </section>
+    <p class="dashboard-footnote"><i class="bi bi-info-circle" aria-hidden="true"></i> Los equipos y marcadores de esta demostración son ficticios. Las estadísticas se recalculan desde el conjunto de partidos ilustrativos incluido en el sitio.</p>
+  </main>
+
+  <footer class="site-footer"><div class="container d-flex flex-wrap justify-content-between gap-2"><span>Fundamentos de Business Intelligence</span><span>Material educativo · <span id="currentYear">2026</span></span></div></footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>
