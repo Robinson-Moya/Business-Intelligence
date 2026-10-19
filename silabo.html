@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Misión BI: aventura interactiva por el sílabo de Sistemas de Información para la Inteligencia de Negocios.">
+	<title>Misión BI: la ruta del sílabo</title>
+	<link rel="icon" href="img/bi-mark.svg" type="image/svg+xml">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/styles.css">
+	<link rel="stylesheet" href="css/silabo.css">
+</head>
+<body class="syllabus-game">
+	<nav class="navbar navbar-expand-lg fixed-top site-nav" aria-label="Navegación principal">
+		<div class="container">
+			<a class="navbar-brand d-flex align-items-center gap-2" href="index.html"><img src="img/bi-mark.svg" width="34" height="34" alt=""><span>BI <span class="brand-light">en claro</span></span></a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#syllabusNavigation" aria-controls="syllabusNavigation" aria-expanded="false" aria-label="Abrir navegación"><span class="navbar-toggler-icon"></span></button>
+			<div class="collapse navbar-collapse" id="syllabusNavigation"><ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+				<li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+				<li class="nav-item"><a class="nav-link" href="index.html#cuestionario">Cuestionario</a></li>
+				<li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
+				<li class="nav-item"><a class="nav-link active" aria-current="page" href="silabo.html">Sílabo Game</a></li>
+			</ul></div>
+		</div>
+	</nav>
+
+	<main>
+		<section class="mission-hero" aria-labelledby="pageTitle">
+			<div class="container mission-hero-grid">
+				<div class="mission-copy">
+					<p class="mission-kicker"><span class="mission-signal"></span> Aventura de aprendizaje · 8.º ciclo</p>
+					<h1 id="pageTitle">Misión BI:<br><span>la ruta del sílabo</span></h1>
+					<p class="mission-lead">Explora tres unidades, supera retos y prepara el proyecto PlasTrack.</p>
+					<div class="mission-actions"><a class="mission-button" href="#inicioJuego"><i class="bi bi-play-fill" aria-hidden="true"></i> Entrar a la misión</a><a class="mission-text-link" href="#mapa">Ver el mapa <i class="bi bi-arrow-down" aria-hidden="true"></i></a></div>
+				</div>
+				<div class="mission-ornament" aria-hidden="true"><div class="orbit orbit-a"></div><div class="orbit orbit-b"></div><div class="mission-orb"><i class="bi bi-compass-fill"></i></div><span class="orbit-node node-one">BI</span><span class="orbit-node node-two">ETL</span><span class="orbit-node node-three">KPI</span></div>
+			</div>
+		</section>
+
+		<section class="container game-layout" id="inicioJuego">
+			<div class="game-main-column">
+				<section class="course-card" aria-labelledby="courseTitle">
+					<div class="course-heading"><div><p class="eyebrow">Ficha de misión</p><h2 id="courseTitle">Sistemas de Información para la Inteligencia de Negocios</h2></div><span class="cycle-stamp">8.º<br>ciclo</span></div>
+					<div class="course-meta"><span><i class="bi bi-mortarboard" aria-hidden="true"></i> Universidad Técnica de Cotopaxi</span><span><i class="bi bi-calendar3" aria-hidden="true"></i> 12 oct 2026 — 21 feb 2027</span><span><i class="bi bi-journal-bookmark" aria-hidden="true"></i> 3 créditos</span><span><i class="bi bi-clock" aria-hidden="true"></i> 144 horas</span></div>
+					<p class="course-objective"><strong>Objetivo</strong><br>Analizar los fundamentos, características y modelamiento de la inteligencia de negocios para entender cómo implementarla en una organización.</p>
+					<div class="hours-grid"><div class="hours-chart"><canvas id="hoursChart" role="img" aria-label="Gráfico de dona: 48 horas de docencia, 48 prácticas y 48 autónomas"></canvas><span class="hours-total">144<small>horas</small></span></div><div class="hours-legend" aria-label="Distribución de horas"><span><i class="hour-dot dot-teaching"></i><strong>48 h</strong> Docencia</span><span><i class="hour-dot dot-practice"></i><strong>48 h</strong> Prácticas</span><span><i class="hour-dot dot-independent"></i><strong>48 h</strong> Autónomas</span></div></div>
+				</section>
+
+				<section class="player-entry" aria-labelledby="entryTitle">
+					<div class="entry-copy"><p class="eyebrow">Tu progreso queda guardado en este navegador</p><h2 id="entryTitle">Prepara tu explorador</h2><p>Elige un apodo para registrar tu avance.</p></div>
+					<form class="entry-form" id="playerForm"><label for="playerNickname">Apodo</label><div class="entry-controls"><input id="playerNickname" name="nickname" maxlength="20" autocomplete="nickname" placeholder="Ej. Analista 01" required><button class="mission-button" type="submit"><i class="bi bi-rocket-takeoff" aria-hidden="true"></i> Comenzar</button></div></form>
+				</section>
+
+				<section class="map-section d-none" id="mapa" aria-labelledby="mapTitle">
+					<div class="section-title-row"><div><p class="eyebrow">Ruta de aprendizaje</p><h2 id="mapTitle">Mapa de niveles</h2></div><span class="map-hint"><i class="bi bi-lock-fill" aria-hidden="true"></i> Avanza en orden</span></div>
+					<div class="player-hud"><div class="player-identity"><span class="avatar-mark"><i class="bi bi-person-fill" aria-hidden="true"></i></span><div><strong id="playerNameDisplay">Explorador</strong><span id="playerRank">Aprendiz</span></div></div><div class="xp-meter"><div class="xp-caption"><span>Experiencia</span><strong><span id="xpValue">0</span> XP</strong></div><div class="xp-track" role="progressbar" aria-label="Experiencia para el siguiente rango" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span id="xpFill"></span></div></div><div class="streak-readout"><i class="bi bi-fire" aria-hidden="true"></i><span>Racha</span><strong id="streakValue">0</strong></div><button class="icon-action sound-button" id="soundToggle" type="button" aria-pressed="false" aria-label="Activar sonidos"><i class="bi bi-volume-mute" aria-hidden="true"></i></button><button class="icon-action reset-button" id="openReset" type="button" data-bs-toggle="modal" data-bs-target="#resetModal" aria-label="Reiniciar progreso" title="Reiniciar progreso"><i class="bi bi-arrow-counterclockwise" aria-hidden="true"></i></button></div>
+					<div class="level-path" id="levelPath" aria-label="Niveles de la misión"></div>
+				</section>
+
+				<section class="level-panel d-none" id="levelPanel" aria-live="polite" aria-labelledby="levelPanelTitle"><div id="levelContent"></div></section>
+
+				<section class="badge-section d-none" id="badgeSection" aria-labelledby="badgeTitle"><div class="section-title-row"><div><p class="eyebrow">Habilidades blandas</p><h2 id="badgeTitle">Vitrina de insignias</h2></div><span class="badge-count" id="badgeCount">0 / 6</span></div><div class="badge-grid" id="badgeGrid"></div></section>
+			</div>
+
+			<aside class="game-side-column">
+				<section class="side-panel calendar-panel" id="calendario" aria-labelledby="calendarTitle"><p class="eyebrow">Fechas clave</p><h2 id="calendarTitle">Calendario</h2><p class="countdown" id="countdownText" aria-live="polite">Calculando próxima evaluación…</p><div class="evaluation-track" id="evaluationTrack"></div><div class="period-caption"><span>Inicio<br><strong>12 oct 2026</strong></span><i class="bi bi-arrow-right" aria-hidden="true"></i><span>Fin<br><strong>21 feb 2027</strong></span></div></section>
+				<section class="side-panel softskills-panel" aria-labelledby="softSkillsTitle"><p class="eyebrow">Se ganan jugando</p><h2 id="softSkillsTitle">Habilidades</h2><div class="skill-chips"><span>Competencia digital</span><span>Creatividad</span><span>Ética</span><span>Liderazgo</span><span>Pensamiento crítico</span><span>Resolución de problemas</span></div></section>
+				<section class="side-panel library-panel" id="biblioteca" aria-labelledby="libraryTitle"><p class="eyebrow">Lecturas y consulta</p><h2 id="libraryTitle">Biblioteca</h2><div id="libraryList" class="library-list"></div></section>
+			</aside>
+		</section>
+	</main>
+
+	<footer class="site-footer"><div class="container d-flex flex-wrap justify-content-between gap-2"><span>Fundamentos de Business Intelligence</span><span>Material educativo · <span id="currentYear">2026</span></span></div></footer>
+
+	<div class="modal fade" id="resetModal" tabindex="-1" aria-labelledby="resetModalTitle" aria-describedby="resetModalText" aria-hidden="true"><div class="modal-dialog modal-dialog-centered"><div class="modal-content"><div class="modal-header"><h2 class="modal-title fs-5" id="resetModalTitle">¿Reiniciar la misión?</h2><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button></div><div class="modal-body" id="resetModalText">Se borrarán el apodo, la experiencia, las estrellas, los niveles y las insignias guardadas en este navegador.</div><div class="modal-footer"><button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button><button type="button" class="btn btn-danger" id="confirmReset">Reiniciar progreso</button></div></div></div></div>
+	<div class="sr-feedback" id="liveAnnouncement" role="status" aria-live="polite"></div>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+	<script src="js/silabo-data.js"></script>
+	<script src="js/silabo.js"></script>
+</body>
+</html>
